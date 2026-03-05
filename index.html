@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة أبواب التعليمية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- شريط التنقل العلوي -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🎓 أبواب</h1>
+                <p class="tagline">منصتك نحو التعليم المتميز</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم الترحيب -->
+    <section class="welcome-section">
+        <div class="container">
+            <div class="welcome-content">
+                <h2>أهلاً وسهلاً بك في منصة أبواب</h2>
+                <p>ابدأ رحلتك التعليمية اليوم واكتسب مهارات جديدة مع أفضل الدروس</p>
+                <div class="welcome-icon">📚</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم جدول المحاضرات اليومي -->
+    <section class="schedule-section">
+        <div class="container">
+            <h2 class="section-title">جدول المحاضرات اليومي</h2>
+            <div class="schedule-wrapper">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>الوقت</th>
+                            <th>المحاضرة</th>
+                            <th>المدرس</th>
+                            <th>الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="active">
+                            <td>09:00 - 10:00</td>
+                            <td>الرياضيات - الجبر</td>
+                            <td>أ. محمد علي</td>
+                            <td><span class="badge active-badge">جاري الآن</span></td>
+                        </tr>
+                        <tr>
+                            <td>10:30 - 11:30</td>
+                            <td>الفيزياء - الحركة</td>
+                            <td>أ. سارة أحمد</td>
+                            <td><span class="badge upcoming-badge">قادم</span></td>
+                        </tr>
+                        <tr>
+                            <td>12:00 - 01:00</td>
+                            <td>اللغة العربية - النحو</td>
+                            <td>أ. فاطمة محمود</td>
+                            <td><span class="badge upcoming-badge">قادم</span></td>
+                        </tr>
+                        <tr>
+                            <td>02:00 - 03:00</td>
+                            <td>العلوم الطبيعية</td>
+                            <td>أ. خالد إبراهيم</td>
+                            <td><span class="badge upcoming-badge">قادم</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الدروس والمواد الدراسية -->
+    <section class="courses-section">
+        <div class="container">
+            <h2 class="section-title">المواد الدراسية الرئيسية</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon">📐</div>
+                    <h3>الرياضيات</h3>
+                    <p>استكشف عالم الأرقام والعمليات الحسابية المتقدمة</p>
+                    <a href="#math" class="course-btn btn-math">ادخل إلى الدروس</a>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-icon">⚛️</div>
+                    <h3>الفيزياء</h3>
+                    <p>تعرف على قوانين الطبيعة والحركة والطاقة</p>
+                    <a href="#physics" class="course-btn btn-physics">ادخل إلى الدروس</a>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-icon">📖</div>
+                    <h3>اللغة العربية</h3>
+                    <p>اتقن مهارات النحو والكتابة والتعبير الأدبي</p>
+                    <a href="#arabic" class="course-btn btn-arabic">ادخل إلى الدروس</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم ملاحظات اليوم -->
+    <section class="notes-section">
+        <div class="container">
+            <h2 class="section-title">ملاحظات اليوم الدراسية</h2>
+            <div class="notes-container">
+                <div class="notes-input-area">
+                    <textarea id="notesTextarea" placeholder="اكتب ملاحظاتك الدراسية هنا... 📝"></textarea>
+                    <div class="notes-buttons">
+                        <button class="btn btn-save" onclick="saveNotes()">💾 حفظ الملاحظات</button>
+                        <button class="btn btn-clear" onclick="clearNotes()">🗑️ مسح</button>
+                    </div>
+                </div>
+                <div class="notes-info">
+                    <h4>💡 نصائح المذاكرة</h4>
+                    <ul>
+                        <li>اكتب ملاحظاتك بطريقة منظمة وسهلة الفهم</li>
+                        <li>ركز على النقاط المهمة والمعادلات الأساسية</li>
+                        <li>راجع ملاحظاتك يومياً قبل الامتحان</li>
+                        <li>استخدم الألوان والرموز لتنظيم معلوماتك</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 منصة أبواب التعليمية - جميع الحقوق محفوظة</p>
+            <p>نحن هنا لدعم مسيرتك التعليمية 🌟</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

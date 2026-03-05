@@ -3,137 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة أبواب التعليمية</title>
+    <title>منصة أبواب التعليمية - نظام تعليمي متطور</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <!-- شريط التنقل العلوي -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <h1>🎓 أبواب</h1>
-                <p class="tagline">منصتك نحو التعليم المتميز</p>
+<body class="light-mode">
+    <!-- شاشة التقديم الأولية (Intro Screen) -->
+    <div id="introScreen" class="intro-screen active">
+        <div class="intro-container">
+            <h1 class="logo-intro">🎓 أبواب</h1>
+            <div class="typewriter-container">
+                <p id="typewriter" class="typewriter"></p>
+                <span class="cursor">|</span>
             </div>
-        </div>
-    </nav>
-
-    <!-- قسم الترحيب -->
-    <section class="welcome-section">
-        <div class="container">
-            <div class="welcome-content">
-                <h2>أهلاً وسهلاً بك في منصة أبواب</h2>
-                <p>ابدأ رحلتك التعليمية اليوم واكتسب مهارات جديدة مع أفضل الدروس</p>
-                <div class="welcome-icon">📚</div>
+            
+            <div id="nameInputSection" class="name-input-section hidden">
+                <input 
+                    type="text" 
+                    id="studentName" 
+                    placeholder="أدخل اسمك..." 
+                    class="name-input"
+                    autocomplete="off"
+                >
+                <button onclick="saveName()" class="submit-name-btn">ابدأ الآن ➜</button>
             </div>
-        </div>
-    </section>
 
-    <!-- قسم جدول المحاضرات اليومي -->
-    <section class="schedule-section">
-        <div class="container">
-            <h2 class="section-title">جدول المحاضرات اليومي</h2>
-            <div class="schedule-wrapper">
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>الوقت</th>
-                            <th>المحاضرة</th>
-                            <th>المدرس</th>
-                            <th>الحالة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="active">
-                            <td>09:00 - 10:00</td>
-                            <td>الرياضيات - الجبر</td>
-                            <td>أ. محمد علي</td>
-                            <td><span class="badge active-badge">جاري الآن</span></td>
-                        </tr>
-                        <tr>
-                            <td>10:30 - 11:30</td>
-                            <td>الفيزياء - الحركة</td>
-                            <td>أ. سارة أحمد</td>
-                            <td><span class="badge upcoming-badge">قادم</span></td>
-                        </tr>
-                        <tr>
-                            <td>12:00 - 01:00</td>
-                            <td>اللغة العربية - النحو</td>
-                            <td>أ. فاطمة محمود</td>
-                            <td><span class="badge upcoming-badge">قادم</span></td>
-                        </tr>
-                        <tr>
-                            <td>02:00 - 03:00</td>
-                            <td>العلوم الطبيعية</td>
-                            <td>أ. خالد إبراهيم</td>
-                            <td><span class="badge upcoming-badge">قادم</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم الدروس والمواد الدراسية -->
-    <section class="courses-section">
-        <div class="container">
-            <h2 class="section-title">المواد الدراسية الرئيسية</h2>
-            <div class="courses-grid">
-                <div class="course-card">
-                    <div class="course-icon">📐</div>
-                    <h3>الرياضيات</h3>
-                    <p>استكشف عالم الأرقام والعمليات الحسابية المتقدمة</p>
-                    <a href="#math" class="course-btn btn-math">ادخل إلى الدروس</a>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-icon">⚛️</div>
-                    <h3>الفيزياء</h3>
-                    <p>تعرف على قوانين الطبيعة والحركة والطاقة</p>
-                    <a href="#physics" class="course-btn btn-physics">ادخل إلى الدروس</a>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-icon">📖</div>
-                    <h3>اللغة العربية</h3>
-                    <p>اتقن مهارات النحو والكتابة والتعبير الأدبي</p>
-                    <a href="#arabic" class="course-btn btn-arabic">ادخل إلى الدروس</a>
+            <div id="modeToggleSection" class="mode-toggle-section hidden">
+                <p class="mode-label">اختر الوضع المفضل:</p>
+                <div class="mode-buttons">
+                    <button id="lightModeBtn" class="mode-btn light-btn" onclick="setMode('light')">
+                        <span class="mode-icon">☀️</span>
+                        <span>الوضع الفاتح</span>
+                    </button>
+                    <button id="darkModeBtn" class="mode-btn dark-btn" onclick="setMode('dark')">
+                        <span class="mode-icon">🌙</span>
+                        <span>الوضع الداكن</span>
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- قسم ملاحظات اليوم -->
-    <section class="notes-section">
-        <div class="container">
-            <h2 class="section-title">ملاحظات اليوم الدراسية</h2>
-            <div class="notes-container">
-                <div class="notes-input-area">
-                    <textarea id="notesTextarea" placeholder="اكتب ملاحظاتك الدراسية هنا... 📝"></textarea>
-                    <div class="notes-buttons">
-                        <button class="btn btn-save" onclick="saveNotes()">💾 حفظ الملاحظات</button>
-                        <button class="btn btn-clear" onclick="clearNotes()">🗑️ مسح</button>
+    <!-- لوحة التحكم الرئيسية (Dashboard) -->
+    <div id="dashboard" class="dashboard hidden">
+        <!-- شريط التنقل العلوي -->
+        <nav class="navbar">
+            <div class="container nav-content">
+                <div class="logo-section">
+                    <h1 class="logo">🎓 أبواب</h1>
+                </div>
+                <div class="nav-right">
+                    <span id="welcomeMsg" class="welcome-msg">أهلاً بك</span>
+                    <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()">
+                        <span id="themeIcon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- محتوى لوحة التحكم -->
+        <main class="main-content">
+            <div class="container">
+                <!-- قسم الترحيب -->
+                <section class="welcome-card">
+                    <div class="welcome-content">
+                        <h2 id="welcomeTitle">أهلاً وسهلاً</h2>
+                        <p>اختر المادة والأستاذ وابدأ رحلتك التعليمية</p>
                     </div>
+                </section>
+
+                <!-- قسم اختيار المادة والأستاذ -->
+                <section class="selector-section">
+                    <div class="selector-grid">
+                        <!-- اختيار المادة -->
+                        <div class="selector-card">
+                            <label for="subjectSelect" class="selector-label">📚 اختر المادة:</label>
+                            <select id="subjectSelect" class="selector-input" onchange="updateTeachers()">
+                                <option value="">-- اختر مادة --</option>
+                            </select>
+                        </div>
+
+                        <!-- اختيار الأستاذ -->
+                        <div class="selector-card">
+                            <label for="teacherSelect" class="selector-label">👨‍🏫 اختر الأستاذ:</label>
+                            <select id="teacherSelect" class="selector-input">
+                                <option value="">-- اختر أستاذ --</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- قسم البحث الذكي -->
+                <section class="search-section">
+                    <div class="search-card">
+                        <div class="search-container">
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                class="search-input" 
+                                placeholder="🔍 ابحث عن موضوع أو درس..."
+                                onkeyup="performSearch()"
+                            >
+                            <button onclick="performSearch()" class="search-btn">بحث</button>
+                        </div>
+                        <div id="searchResults" class="search-results hidden">
+                            <!-- النتائج ستظهر هنا -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- قسم الملاحظات الذكية -->
+                <section class="notes-section">
+                    <h2 class="section-title">📝 ملاحظات اليوم الذكية</h2>
+                    <div class="notes-grid">
+                        <div class="notes-input-container">
+                            <textarea 
+                                id="smartNotes" 
+                                class="smart-notes-textarea" 
+                                placeholder="اكتب ملاحظاتك... (استخدم كلمات مثل: مهم، امتحان، مراجعة، تم الحل)"
+                                onkeyup="analyzeNote()"
+                            ></textarea>
+                            <div class="notes-buttons">
+                                <button class="btn btn-add-note" onclick="addNote()">➕ إضافة ملاحظة</button>
+                                <button class="btn btn-clear-note" onclick="clearNoteInput()">🗑️ مسح</button>
+                            </div>
+                        </div>
+
+                        <div class="notes-list-container">
+                            <h3>قائمة الملاحظات</h3>
+                            <div id="notesList" class="notes-list">
+                                <!-- الملاحظات ستظهر هنا -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- قسم إحصائيات المذاكرة -->
+                <section class="stats-section">
+                    <h2 class="section-title">📊 إحصائياتك الدراسية</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📖</div>
+                            <p class="stat-label">الملاحظات المضافة</p>
+                            <p id="totalNotes" class="stat-number">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⚠️</div>
+                            <p class="stat-label">ملاحظات مهمة</p>
+                            <p id="importantNotes" class="stat-number">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <p class="stat-label">المهام المكتملة</p>
+                            <p id="completedTasks" class="stat-number">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🎯</div>
+                            <p class="stat-label">ساعات المذاكرة</p>
+                            <p id="studyHours" class="stat-number">0</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- قسم إدارة المهام -->
+                <section class="tasks-section">
+                    <h2 class="section-title">📋 إدارة المهام الدراسية</h2>
+                    <div class="tasks-container">
+                        <!-- نموذج إضافة مهمة جديدة -->
+                        <div class="task-form-card">
+                            <h3>➕ إضافة مهمة جديدة</h3>
+                            <form id="taskForm" class="task-form">
+                                <div class="form-group">
+                                    <label for="taskTitle">عنوان المهمة:</label>
+                                    <input type="text" id="taskTitle" placeholder="مثال: مراجعة الرياضيات" required>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="taskPriority">الأهمية:</label>
+                                        <select id="taskPriority">
+                                            <option value="normal">عادية</option>
+                                            <option value="high">قصوى</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="taskTime">وقت التذكير:</label>
+                                        <input type="time" id="taskTime">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>تنسيق الوقت:</label>
+                                    <div class="time-format-options">
+                                        <label class="radio-label">
+                                            <input type="radio" name="timeFormat" value="24" checked> 24 ساعة
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="timeFormat" value="12"> 12 ساعة
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-add-task">➕ إضافة المهمة</button>
+                            </form>
+                        </div>
+
+                        <!-- قائمة المهام -->
+                        <div class="tasks-list-card">
+                            <h3>📝 قائمة المهام</h3>
+                            <div id="tasksList" class="tasks-list">
+                                <!-- المهام ستظهر هنا -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- التذييل -->
+        <footer class="footer">
+            <div class="container footer-content">
+                <div class="footer-section">
+                    <h4>👨‍💻 تم بناء هذا الموقع بواسطة مطور مرتضى ايمن</h4>
+                    <p>نظام متقدم مختص بفهم احتياجات الطالب العراقي وتنظيم دراسته بذكاء</p>
                 </div>
-                <div class="notes-info">
-                    <h4>💡 نصائح المذاكرة</h4>
-                    <ul>
-                        <li>اكتب ملاحظاتك بطريقة منظمة وسهلة الفهم</li>
-                        <li>ركز على النقاط المهمة والمعادلات الأساسية</li>
-                        <li>راجع ملاحظاتك يومياً قبل الامتحان</li>
-                        <li>استخدم الألوان والرموز لتنظيم معلوماتك</li>
-                    </ul>
+                <div class="footer-section">
+                    <p>&copy; 2026 منصة أبواب التعليمية - جميع الحقوق محفوظة</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- التذييل -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 منصة أبواب التعليمية - جميع الحقوق محفوظة</p>
-            <p>نحن هنا لدعم مسيرتك التعليمية 🌟</p>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
